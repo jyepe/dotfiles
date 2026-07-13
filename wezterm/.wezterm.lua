@@ -126,28 +126,40 @@ config.keys = {
 	{ key = "|", mods = "LEADER|SHIFT", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "-", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	-- Rename current tab
-	{ key = "e", mods = "LEADER", action = wezterm.action.PromptInputLine {
-		description = "Enter new tab name",
-		action = wezterm.action_callback(function(window, pane, line)
-			if line then window:active_tab():set_title(line) end
-		end),
-	}},
+	{
+		key = "e",
+		mods = "LEADER",
+		action = wezterm.action.PromptInputLine({
+			description = "Enter new tab name",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
 	-- Switch to tab by name (substring, case-insensitive)
-	{ key = "s", mods = "LEADER", action = wezterm.action.PromptInputLine {
-		description = "Switch to tab matching name",
-		action = wezterm.action_callback(function(window, pane, line)
-			if not line then return end
-			local tabs = window:mux_window():tabs()
-			local needle = line:lower()
-			for _, tab in ipairs(tabs) do
-				local title = tab:get_title() or ""
-				if title:lower():find(needle, 1, true) then
-					tab:activate()
+	{
+		key = "s",
+		mods = "LEADER",
+		action = wezterm.action.PromptInputLine({
+			description = "Switch to tab matching name",
+			action = wezterm.action_callback(function(window, pane, line)
+				if not line then
 					return
 				end
-			end
-		end),
-	}},
+				local tabs = window:mux_window():tabs()
+				local needle = line:lower()
+				for _, tab in ipairs(tabs) do
+					local title = tab:get_title() or ""
+					if title:lower():find(needle, 1, true) then
+						tab:activate()
+						return
+					end
+				end
+			end),
+		}),
+	},
 }
 
 -- Workspaces: auto-create "code" and "shell" on startup
