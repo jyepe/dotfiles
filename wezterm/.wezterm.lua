@@ -122,6 +122,9 @@ config.keys = {
 	{ key = "q", mods = "LEADER", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
 	{ key = "r", mods = "LEADER", action = wezterm.action.ReloadConfiguration },
 	{ key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
+	-- Splits (vim/tmux conventions: | = vertical, - = horizontal)
+	{ key = "|", mods = "LEADER|SHIFT", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "-", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	-- Rename current tab
 	{ key = "e", mods = "LEADER", action = wezterm.action.PromptInputLine {
 		description = "Enter new tab name",
