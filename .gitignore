@@ -1,0 +1,7 @@
+# Neovim transient state (the submodule manages its own .gitignore too)
+nvim/.netrwhist
+
+# OS noise
+.DS_Store
+Thumbs.db
+*.bak
