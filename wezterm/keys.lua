@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local M = {}
 
-function M.apply_to_config(config)
+function M.apply_to_config(config, workspaces)
 	-- Leader key: Ctrl+Space, 2 second timeout
 	config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 2000 }
 
@@ -17,6 +17,8 @@ function M.apply_to_config(config)
 
 	-- Leader-driven key bindings
 	config.keys = {
+		-- Workspaces
+		{ key = "Space", mods = "LEADER", action = workspaces.selector_action() },
 		-- Tabs
 		{ key = "t", mods = "LEADER", action = wezterm.action.SpawnTab("DefaultDomain") },
 		{ key = "w", mods = "LEADER", action = wezterm.action.CloseCurrentTab({ confirm = true }) },

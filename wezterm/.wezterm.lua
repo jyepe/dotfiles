@@ -21,7 +21,7 @@ local workspaces = load_module("workspaces")
 fonts.apply_to_config(config)
 colors.apply_to_config(config)
 appearance.apply_to_config(config)
-keys.apply_to_config(config)
+keys.apply_to_config(config, workspaces)
 
 -- Register event handlers
 workspaces.setup()
