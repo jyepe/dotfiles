@@ -16,6 +16,7 @@ local colors = load_module("colors")
 local appearance = load_module("appearance")
 local keys = load_module("keys")
 local workspaces = load_module("workspaces")
+local tab_bar = load_module("tab_bar")
 
 -- Apply
 fonts.apply_to_config(config)
@@ -25,5 +26,6 @@ keys.apply_to_config(config, workspaces)
 
 -- Register event handlers
 workspaces.setup()
+tab_bar.setup()
 
 return config
