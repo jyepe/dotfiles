@@ -33,19 +33,64 @@ function M.validate(raw)
 	return definitions
 end
 
-function M.load(path)
+local function load_raw(path)
 	local matches = wezterm.glob(path)
 	if #matches == 0 then
-		return { home_definition() }
+		return nil
 	end
 
 	local ok, raw = pcall(dofile, path)
 	if not ok then
 		wezterm.log_error(string.format("failed to load workspace definitions from %s: %s", path, raw))
-		return { home_definition() }
+		return nil
+	end
+	return raw
+end
+
+function M.load(path)
+	return M.validate(load_raw(path))
+end
+
+function M.load_profiles(path)
+	local raw = load_raw(path)
+	if raw == nil then
+		return { { name = "default", definitions = { home_definition() } } }
 	end
 
-	return M.validate(raw)
+	-- Preserve compatibility with the original flat-list format.
+	if #raw > 0 then
+		return { { name = "default", definitions = M.validate(raw) } }
+	end
+
+	local names = {}
+	for name, value in pairs(raw) do
+		if type(name) == "string" and type(value) == "table" then
+			table.insert(names, name)
+		end
+	end
+	table.sort(names)
+
+	local profiles = {}
+	for _, name in ipairs(names) do
+		table.insert(profiles, {
+			name = name,
+			definitions = M.validate(raw[name]),
+		})
+	end
+
+	if #profiles == 0 then
+		return { { name = "default", definitions = { home_definition() } } }
+	end
+	return profiles
+end
+
+function M.profile_definitions(profiles, name)
+	for _, profile in ipairs(profiles or {}) do
+		if profile.name == name then
+			return profile.definitions
+		end
+	end
+	return { home_definition() }
 end
 
 return M

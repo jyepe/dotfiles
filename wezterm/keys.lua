@@ -19,6 +19,8 @@ function M.apply_to_config(config, workspaces)
 	config.keys = {
 		-- Workspaces
 		{ key = "Space", mods = "LEADER", action = workspaces.selector_action() },
+		{ key = "c", mods = "LEADER", action = workspaces.create_action() },
+		{ key = "m", mods = "LEADER", action = workspaces.profile_selector_action() },
 		-- Tabs
 		{ key = "t", mods = "LEADER", action = wezterm.action.SpawnTab("DefaultDomain") },
 		{ key = "w", mods = "LEADER", action = wezterm.action.CloseCurrentTab({ confirm = true }) },

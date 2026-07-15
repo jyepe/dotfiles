@@ -88,26 +88,34 @@ Use `wezterm/workspaces.local.example.lua` as the template:
 
 ```lua
 return {
-  { name = "dotfiles", cwd = "C:/Users/your-name/dotfiles" },
-  { name = "notes", cwd = "D:/Notes" },
+  home = {
+    { name = "dotfiles", cwd = "C:/Users/your-name/dotfiles" },
+    { name = "personal", cwd = "C:/Users/your-name/Documents/personal" },
+  },
+  work = {
+    { name = "client", cwd = "D:/Work/client" },
+    { name = "docs", cwd = "D:/Work/docs" },
+  },
 }
 ```
 
 Use forward slashes in Windows paths. The local file is outside this repository,
-so each PC can use different names and directories. After editing it, press
-`Ctrl+Space`, then `r` to reload the configuration.
+so each PC can use different paths. WezTerm asks which profile to use when a
+window is created; the selected profile controls the workspace selector.
 
 Workspace and tab shortcuts:
 
-- `Ctrl+Space`, then `Space`: search and switch workspaces
+- `Ctrl+Space`, then `Space`: search and switch workspaces in the active profile
+- `Ctrl+Space`, then `c`: create/switch to a named workspace in the current directory
+- `Ctrl+Space`, then `m`: change the active workspace profile
 - `Ctrl+Space`, then `t`: new tab in the active workspace
 - `Ctrl+Space`, then `w`: close current tab
 - `Ctrl+Space`, then `1` through `8`: jump to a tab
 - `Ctrl+Space`, then `Tab` / `Shift+Tab`: next / previous tab
 
-Configured workspaces are created only when selected. Selecting one whose
-directory does not exist leaves the current workspace active and shows a
-notification.
+Configured workspaces are persisted on disk in the local file and created only
+when selected. Selecting one whose directory does not exist leaves the current
+workspace active and shows a notification.
 
 ## Updating
 
