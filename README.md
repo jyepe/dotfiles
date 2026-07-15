@@ -4,10 +4,15 @@ Personal dotfiles for Windows — WezTerm + Neovim (LazyVim) + Starship prompt.
 
 ## Repo layout
 
-```
+```text
 dotfiles/
   nvim/                     # Neovim config (LazyVim distribution + customizations)
-  wezterm/.wezterm.lua      # WezTerm config
+  wezterm/                   # Shared modular WezTerm configuration
+    .wezterm.lua             # Root configuration loader
+    workspaces.lua           # Workspace startup and picker behavior
+    workspace_config.lua     # Local definition loading and validation
+    workspaces.local.example.lua
+    tab_bar.lua              # Workspace status and tab styling
   starship/starship.toml   # Starship prompt config
   bootstrap.ps1             # symlinks everything into place
 ```
@@ -69,6 +74,40 @@ Existing files at those targets are backed up to `*.bak` before linking.
   `nvim/lazy-lock.json`. Restart after the install completes.
 - **Starship**: ensure your PowerShell profile invokes Starship. If not, add
   `Invoke-Expression (&starship init powershell)` to your PowerShell profile.
+
+### Configure machine-local WezTerm workspaces
+
+Workspaces are optional and machine-specific. WezTerm always starts with a
+`home` workspace rooted at your user directory.
+
+To add workspaces on a PC, create:
+
+`~/.config/wezterm/workspaces.local.lua`
+
+Use `wezterm/workspaces.local.example.lua` as the template:
+
+```lua
+return {
+  { name = "dotfiles", cwd = "C:/Users/your-name/dotfiles" },
+  { name = "notes", cwd = "D:/Notes" },
+}
+```
+
+Use forward slashes in Windows paths. The local file is outside this repository,
+so each PC can use different names and directories. After editing it, press
+`Ctrl+Space`, then `r` to reload the configuration.
+
+Workspace and tab shortcuts:
+
+- `Ctrl+Space`, then `Space`: search and switch workspaces
+- `Ctrl+Space`, then `t`: new tab in the active workspace
+- `Ctrl+Space`, then `w`: close current tab
+- `Ctrl+Space`, then `1` through `8`: jump to a tab
+- `Ctrl+Space`, then `Tab` / `Shift+Tab`: next / previous tab
+
+Configured workspaces are created only when selected. Selecting one whose
+directory does not exist leaves the current workspace active and shows a
+notification.
 
 ## Updating
 
