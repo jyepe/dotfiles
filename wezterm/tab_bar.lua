@@ -17,6 +17,7 @@ local colors = {
 -- Nerd Font rounded caps
 local cap_left = wezterm.nerdfonts.ple_left_half_circle_thick
 local cap_right = wezterm.nerdfonts.ple_right_half_circle_thick
+local separator = wezterm.nerdfonts.pl_right_hard_divider
 local workspace_icon = wezterm.nerdfonts.md_folder_multiple
 
 local function title_for(tab)
@@ -26,24 +27,17 @@ local function title_for(tab)
 	return tab.active_pane.title
 end
 
--- Workspace pill at the far left of the tab bar
+-- Square workspace block at the far left of the tab bar
 local function format_workspace(window)
 	local name = window:active_workspace()
 	return wezterm.format({
-		-- left rounded cap
-		{ Background = { Color = colors.bar } },
-		{ Foreground = { Color = colors.workspace_bg } },
-		{ Text = cap_left },
-		-- pill body
 		{ Background = { Color = colors.workspace_bg } },
 		{ Foreground = { Color = colors.workspace_fg } },
 		{ Attribute = { Intensity = "Bold" } },
-		{ Text = " " .. workspace_icon .. " " .. name .. " " },
-		-- right rounded cap
+		{ Text = "  " .. workspace_icon .. "  " .. name .. "  " },
 		{ Background = { Color = colors.bar } },
 		{ Foreground = { Color = colors.workspace_bg } },
-		{ Attribute = { Intensity = "Normal" } },
-		{ Text = cap_right .. " " },
+		{ Text = separator },
 	})
 end
 
@@ -71,7 +65,7 @@ local function format_tab(tab, hover, max_width)
 		{ Background = { Color = background } },
 		{ Foreground = { Color = foreground } },
 		{ Attribute = { Intensity = tab.is_active and "Bold" or "Normal" } },
-		{ Text = " " .. prefix .. title .. " " },
+		{ Text = "  " .. prefix .. title .. "  " },
 		-- right rounded cap
 		{ Background = { Color = colors.bar } },
 		{ Foreground = { Color = background } },
