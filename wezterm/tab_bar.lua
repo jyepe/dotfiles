@@ -17,7 +17,6 @@ local colors = {
 -- Nerd Font rounded caps
 local cap_left = wezterm.nerdfonts.ple_left_half_circle_thick
 local cap_right = wezterm.nerdfonts.ple_right_half_circle_thick
-local separator = wezterm.nerdfonts.pl_right_hard_divider
 local workspace_icon = wezterm.nerdfonts.md_folder_multiple
 
 local function title_for(tab)
@@ -36,8 +35,7 @@ local function format_workspace(window)
 		{ Attribute = { Intensity = "Bold" } },
 		{ Text = "  " .. workspace_icon .. "  " .. name .. "  " },
 		{ Background = { Color = colors.bar } },
-		{ Foreground = { Color = colors.workspace_bg } },
-		{ Text = separator },
+		{ Text = " " },
 	})
 end
 
