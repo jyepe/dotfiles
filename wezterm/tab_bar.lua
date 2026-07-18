@@ -8,13 +8,15 @@ local colors = {
 	workspace_fg = "#1f2335",
 	active_bg = "#394260",
 	active_fg = "#c0caf5",
-	inactive_bg = "#1f2335",
-	inactive_fg = "#565f89",
-	hover_bg = "#292e42",
-	hover_fg = "#a9b1d6",
+	inactive_bg = "#292e42",
+	inactive_fg = "#a9b1d6",
+	hover_bg = "#3b4261",
+	hover_fg = "#c0caf5",
 }
 
-local separator = wezterm.nerdfonts.pl_right_hard_divider
+-- Nerd Font rounded caps
+local cap_left = wezterm.nerdfonts.ple_left_half_circle_thick
+local cap_right = wezterm.nerdfonts.ple_right_half_circle_thick
 local workspace_icon = wezterm.nerdfonts.md_folder_multiple
 
 local function title_for(tab)
@@ -24,19 +26,28 @@ local function title_for(tab)
 	return tab.active_pane.title
 end
 
+-- Workspace pill at the far left of the tab bar
 local function format_workspace(window)
 	local name = window:active_workspace()
 	return wezterm.format({
+		-- left rounded cap
+		{ Background = { Color = colors.bar } },
+		{ Foreground = { Color = colors.workspace_bg } },
+		{ Text = cap_left },
+		-- pill body
 		{ Background = { Color = colors.workspace_bg } },
 		{ Foreground = { Color = colors.workspace_fg } },
 		{ Attribute = { Intensity = "Bold" } },
 		{ Text = " " .. workspace_icon .. " " .. name .. " " },
+		-- right rounded cap
 		{ Background = { Color = colors.bar } },
 		{ Foreground = { Color = colors.workspace_bg } },
-		{ Text = separator },
+		{ Attribute = { Intensity = "Normal" } },
+		{ Text = cap_right .. " " },
 	})
 end
 
+-- Pill-shaped tab:  body  with the tab color showing through the caps
 local function format_tab(tab, hover, max_width)
 	local background = colors.inactive_bg
 	local foreground = colors.inactive_fg
@@ -48,17 +59,28 @@ local function format_tab(tab, hover, max_width)
 		foreground = colors.hover_fg
 	end
 
-	local prefix = string.format(" %d ", tab.tab_index + 1)
-	local title = wezterm.truncate_right(title_for(tab), math.max(1, max_width - #prefix - 2))
+	local prefix = string.format("%d ", tab.tab_index + 1)
+	local title = wezterm.truncate_right(title_for(tab), math.max(1, max_width - #prefix - 4))
 
 	return {
+		-- left rounded cap
+		{ Background = { Color = colors.bar } },
+		{ Foreground = { Color = background } },
+		{ Text = cap_left },
+		-- pill body
 		{ Background = { Color = background } },
 		{ Foreground = { Color = foreground } },
 		{ Attribute = { Intensity = tab.is_active and "Bold" or "Normal" } },
-		{ Text = prefix .. title .. " " },
+		{ Text = " " .. prefix .. title .. " " },
+		-- right rounded cap
 		{ Background = { Color = colors.bar } },
 		{ Foreground = { Color = background } },
-		{ Text = separator },
+		{ Attribute = { Intensity = "Normal" } },
+		{ Text = cap_right },
+		-- gap between pills
+		{ Background = { Color = colors.bar } },
+		{ Foreground = { Color = colors.bar } },
+		{ Text = " " },
 	}
 end
 
