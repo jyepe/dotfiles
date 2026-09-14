@@ -14,6 +14,7 @@ dotfiles/
     workspaces.local.example.lua
     tab_bar.lua              # Workspace status and tab styling
   starship/starship.toml   # Starship prompt config
+  neru/config.toml         # Neru key navigation & hotkey config
   bootstrap.ps1             # symlinks everything into place
 ```
 
@@ -37,6 +38,9 @@ winget install Git.Git
 # A C compiler (for nvim-treesitter) — pick one:
 winget install MartinStorsjo.LLVM-Mingw
 # or: winget install Kitware.CMake
+
+# Neru (keyboard-driven navigation)
+irm https://raw.githubusercontent.com/y3owk1n/neru/main/scripts/install.ps1 | iex
 
 # PowerShell modules referenced in the prompt
 Install-Module Terminal-Icons -Scope CurrentUser -Force
@@ -64,6 +68,8 @@ This symlinks:
 - `~/dotfiles/nvim`             → `%LOCALAPPDATA%\nvim`
 - `~/dotfiles/wezterm/.wezterm.lua` → `~/.wezterm.lua`
 - `~/dotfiles/starship/starship.toml` → `~/.config/starship.toml`
+- `~/dotfiles/powershell/Microsoft.PowerShell_profile.ps1` → `$PROFILE`
+- `~/dotfiles/neru/config.toml`    → `%APPDATA%\neru\config.toml`
 
 Existing files at those targets are backed up to `*.bak` before linking.
 

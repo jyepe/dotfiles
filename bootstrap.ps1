@@ -42,6 +42,11 @@ $links = @(
         Source = Join-Path $repoRoot 'powershell\Microsoft.PowerShell_profile.ps1'
         Target = $PROFILE
         Kind   = 'File'
+    },
+    @{
+        Source = Join-Path $repoRoot 'neru\config.toml'
+        Target = Join-Path $env:APPDATA 'neru\config.toml'
+        Kind   = 'File'
     }
 )
 
@@ -67,6 +72,7 @@ $dependencies = @(
     @{ Name = 'yazi';        Check = { Get-Command yazi -ErrorAction SilentlyContinue };           Choco = $null;                  Winget = 'sxyazi.yazi';                          Url = 'https://yazi-rs.github.io/docs/installation' }
     @{ Name = 'glazewm';     Check = { Get-Command glazewm -ErrorAction SilentlyContinue };       Choco = 'glazewm';              Winget = 'glzr-io.glazewm';                      Url = 'https://github.com/glzr-io/glazewm/releases' }
     @{ Name = 'C compiler (WinLibs)'; Check = { (Get-Command cc -ErrorAction SilentlyContinue) -or (Get-Command gcc -ErrorAction SilentlyContinue) }; Choco = $null; Winget = 'BrechtSanders.WinLibs.POSIX.UCRT'; Url = 'https://winlibs.com' }
+    @{ Name = 'neru';        Check = { (Get-Command neru -ErrorAction SilentlyContinue) -or (Test-Path "$env:LOCALAPPDATA\Programs\neru\neru.exe") }; Script = { irm https://raw.githubusercontent.com/y3owk1n/neru/main/scripts/install.ps1 | iex }; Choco = $null; Winget = $null; Url = 'https://github.com/y3owk1n/neru' }
 )
 
 function Test-Admin {
@@ -87,14 +93,28 @@ function Install-Dependencies {
     foreach ($dep in $dependencies) {
         $name = $dep.Name
         if (& $dep.Check) {
-            Write-Host "[ok]      $name already installed" -ForegroundColor Green
+            if ($dep.Script) {
+                Write-Host "[ok]      $name already downloaded" -ForegroundColor Green
+            } else {
+                Write-Host "[ok]      $name already installed" -ForegroundColor Green
+            }
             continue
         }
 
         Write-Host "[missing] $name" -ForegroundColor Yellow
 
         $installed = $false
-        if ($hasChoco -and $dep.Choco) {
+        if ($dep.Script) {
+            Write-Host "          downloading and installing via script ..."
+            try {
+                & $dep.Script
+                $installed = [bool](& $dep.Check)
+            } catch {
+                Write-Warning "Download/install script failed for $name: $_"
+            }
+        }
+
+        if (-not $installed -and $hasChoco -and $dep.Choco) {
             Write-Host "          installing via choco install $($dep.Choco) -y ..."
             choco install $dep.Choco -y | Out-Null
             $installed = [bool](& $dep.Check)
