@@ -110,7 +110,7 @@ function Install-Dependencies {
                 & $dep.Script
                 $installed = [bool](& $dep.Check)
             } catch {
-                Write-Warning "Download/install script failed for $name: $_"
+                Write-Warning "Download/install script failed for ${name}: $_"
             }
         }
 
