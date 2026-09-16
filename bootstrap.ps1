@@ -47,6 +47,11 @@ $links = @(
         Source = Join-Path $repoRoot 'neru\config.toml'
         Target = Join-Path $env:APPDATA 'neru\config.toml'
         Kind   = 'File'
+    },
+    @{
+        Source = Join-Path $repoRoot 'herdr\config.toml'
+        Target = Join-Path $env:APPDATA 'herdr\config.toml'
+        Kind   = 'File'
     }
 )
 
@@ -73,6 +78,7 @@ $dependencies = @(
     @{ Name = 'glazewm';     Check = { Get-Command glazewm -ErrorAction SilentlyContinue };       Choco = 'glazewm';              Winget = 'glzr-io.glazewm';                      Url = 'https://github.com/glzr-io/glazewm/releases' }
     @{ Name = 'C compiler (WinLibs)'; Check = { (Get-Command cc -ErrorAction SilentlyContinue) -or (Get-Command gcc -ErrorAction SilentlyContinue) }; Choco = $null; Winget = 'BrechtSanders.WinLibs.POSIX.UCRT'; Url = 'https://winlibs.com' }
     @{ Name = 'neru';        Check = { (Get-Command neru -ErrorAction SilentlyContinue) -or (Test-Path "$env:LOCALAPPDATA\Programs\neru\neru.exe") }; Script = { irm https://raw.githubusercontent.com/y3owk1n/neru/main/scripts/install.ps1 | iex }; Choco = $null; Winget = $null; Url = 'https://github.com/y3owk1n/neru' }
+    @{ Name = 'herdr';       Check = { Get-Command herdr -ErrorAction SilentlyContinue }; Script = { irm https://herdr.dev/install.ps1 | iex }; Choco = $null; Winget = $null; Url = 'https://herdr.dev' }
 )
 
 function Test-Admin {

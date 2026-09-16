@@ -15,6 +15,7 @@ dotfiles/
     tab_bar.lua              # Workspace status and tab styling
   starship/starship.toml   # Starship prompt config
   neru/config.toml         # Neru key navigation & hotkey config
+  herdr/config.toml        # Herdr terminal multiplexer config
   bootstrap.ps1             # symlinks everything into place
 ```
 
@@ -41,6 +42,9 @@ winget install MartinStorsjo.LLVM-Mingw
 
 # Neru (keyboard-driven navigation)
 irm https://raw.githubusercontent.com/y3owk1n/neru/main/scripts/install.ps1 | iex
+
+# Herdr (terminal multiplexer for coding agents)
+powershell -ExecutionPolicy Bypass -c "irm https://herdr.dev/install.ps1 | iex"
 
 # PowerShell modules referenced in the prompt
 Install-Module Terminal-Icons -Scope CurrentUser -Force
@@ -70,6 +74,7 @@ This symlinks:
 - `~/dotfiles/starship/starship.toml` → `~/.config/starship.toml`
 - `~/dotfiles/powershell/Microsoft.PowerShell_profile.ps1` → `$PROFILE`
 - `~/dotfiles/neru/config.toml`    → `%APPDATA%\neru\config.toml`
+- `~/dotfiles/herdr/config.toml`   → `%APPDATA%\herdr\config.toml`
 
 Existing files at those targets are backed up to `*.bak` before linking.
 

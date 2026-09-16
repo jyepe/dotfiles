@@ -1,0 +1,9 @@
+onboarding = false
+
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[terminal]
+default_shell = "pwsh"
+shell_mode = "non_login"
