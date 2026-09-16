@@ -46,7 +46,7 @@ Update the configuration files for both **WezTerm** and **Herdr** in the dotfile
 - Disable native tab bar: `config.enable_tab_bar = false`
 - Window decorations: `config.window_decorations = "RESIZE"`
 - Window padding: `config.window_padding = { left = 6, right = 6, top = 6, bottom = 6 }`
-- Window opacity & backdrop: `config.window_background_opacity = 0.5`, `config.win32_system_backdrop = "Acrylic"`
+- Window opacity & backdrop: `config.window_background_opacity = 0.85`, `config.win32_system_backdrop = "Mica"` (cleaner, less blurry modern material replacing frosted Acrylic)
 
 ### 3.3. `wezterm/keys.lua`
 - Add mouse binding for dragging the titlebar-less window:
