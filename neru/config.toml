@@ -47,7 +47,7 @@ text = "#E8EEFF"
 "Primary+Shift+Space" = "hints --action left_click --repeat"
 "Primary+Shift+G" = "grid"
 "Primary+Shift+C" = "recursive_grid"
-"Primary+Shift+S" = "scroll"
+"Primary+Shift+S" = ["action move_mouse --center", "scroll"]
 
 # Macros — named action sequences, reused from any binding.
 # Written by hand, not recorded. $1, $2 ... are the call's arguments.
@@ -247,7 +247,7 @@ border_width = 1
 enabled = true
 grid_cols = 3                               # Number of columns (>= 1)
 grid_rows = 3                               # Number of rows (>= 1)
-keys = "rtyfghvbn"                          # Cell selection keys (must be grid_cols * grid_rows chars)
+keys = "wersdfxcv"                          # Cell selection keys (must be grid_cols * grid_rows chars)
 min_size_width = 1                          # Stop subdividing below this width (px)
 min_size_height = 1                         # Stop subdividing below this height (px)
 max_depth = 10                              # Maximum recursion levels (1–20)
@@ -266,10 +266,6 @@ duration_ms = 50                            # Recursive-grid animation duration 
 "Shift+M" = "action middle_click"
 "Shift+I" = "action left_click --state down"
 "Shift+U" = "action left_click --state up"
-"Up" = "action move_cell --direction up"
-"Down" = "action move_cell --direction down"
-"Left" = "action move_cell --direction left"
-"Right" = "action move_cell --direction right"
 "j" = "action move_cell --direction left"
 "k" = "action move_cell --direction up"
 "l" = "action move_cell --direction down"
