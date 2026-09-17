@@ -10,10 +10,10 @@ function M.apply_to_config(config)
 	config.show_tab_index_in_tab_bar = false
 	config.tab_max_width = 32
 
-	-- Window & Backdrop (Mica needs opacity = 0 or close to it to show properly)
+	-- Window & Backdrop
 	config.window_decorations = "TITLE | RESIZE"
-	config.window_background_opacity = 0.5
-	config.win32_system_backdrop = "Acrylic"
+	config.window_background_opacity = 1.0
+	-- config.win32_system_backdrop = "Acrylic"
 	config.window_padding = { left = 6, right = 6, top = 6, bottom = 6 }
 
 	-- Initial size
