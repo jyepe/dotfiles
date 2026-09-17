@@ -12,7 +12,7 @@ function M.apply_to_config(config)
 
 	-- Window & Backdrop (Mica with crisp opacity)
 	config.window_decorations = "RESIZE"
-	config.window_background_opacity = 0.85
+	config.window_background_opacity = 0.50
 	config.win32_system_backdrop = "Mica"
 	config.window_padding = { left = 6, right = 6, top = 6, bottom = 6 }
 
