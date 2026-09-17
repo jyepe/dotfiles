@@ -1,8 +1,20 @@
 onboarding = false
 
 [theme]
-name = "tokyo-night"
+name = "vesper"
 auto_switch = false
+
+[theme.custom]
+sidebar_bg = "#1a1528"
+active_row_bg = "#34294f"
+selection_bg = "#463568"
+panel_bg = "reset"
+accent = "#ff7edb"
+cyan = "#36f9f6"
+green = "#72f1b8"
+red = "#fe4450"
+yellow = "#fede5d"
+text = "#f0eff1"
 
 [terminal]
 default_shell = "pwsh"
