@@ -22,5 +22,3 @@ shell_mode = "non_login"
 
 [ui]
 status_indicators = "dots"
-pane_outer_borders = false
-pane_gaps = false
