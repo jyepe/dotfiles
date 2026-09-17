@@ -12,7 +12,7 @@ function M.apply_to_config(config)
 
 	-- Window & Backdrop
 	config.window_decorations = "TITLE | RESIZE"
-	config.window_background_opacity = 1.0
+	config.window_background_opacity = 0.90
 	-- config.win32_system_backdrop = "Acrylic"
 	config.window_padding = { left = 6, right = 6, top = 6, bottom = 6 }
 
