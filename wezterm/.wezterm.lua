@@ -26,6 +26,7 @@ keys.apply_to_config(config, workspaces)
 
 -- Register event handlers
 workspaces.setup()
+tab_bar.setup()
 
 -- Force WezTerm reload after theme update
 return config
