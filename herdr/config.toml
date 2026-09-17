@@ -25,3 +25,5 @@ key = "prefix+shift+b"
 type = "shell"
 command = "herdr plugin action invoke open-board --plugin local.windows-board"
 
+[ui]
+status_indicators = "dots"
