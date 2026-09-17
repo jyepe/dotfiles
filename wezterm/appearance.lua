@@ -2,7 +2,7 @@ local M = {}
 
 function M.apply_to_config(config)
 	-- Top tab bar: always visible so the active workspace is always visible.
-	config.enable_tab_bar = true
+	config.enable_tab_bar = false
 	config.use_fancy_tab_bar = false
 	config.tab_bar_at_bottom = false
 	config.hide_tab_bar_if_only_one_tab = false
@@ -12,7 +12,7 @@ function M.apply_to_config(config)
 
 	-- Window & Backdrop (Mica needs opacity = 0 or close to it to show properly)
 	config.window_decorations = "TITLE | RESIZE"
-	config.window_background_opacity = 0.50
+	config.window_background_opacity = 0.5
 	config.win32_system_backdrop = "Acrylic"
 	config.window_padding = { left = 6, right = 6, top = 6, bottom = 6 }
 
@@ -28,3 +28,4 @@ function M.apply_to_config(config)
 end
 
 return M
+

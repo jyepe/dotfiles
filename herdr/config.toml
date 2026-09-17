@@ -5,7 +5,7 @@ name = "vesper"
 auto_switch = false
 
 [theme.custom]
-sidebar_bg = "#1a1528"
+sidebar_bg = "reset"
 active_row_bg = "#34294f"
 selection_bg = "#463568"
 panel_bg = "reset"
