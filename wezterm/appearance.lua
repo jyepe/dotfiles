@@ -11,7 +11,7 @@ function M.apply_to_config(config)
 	config.tab_max_width = 32
 
 	-- Window & Backdrop
-	config.window_decorations = "TITLE | RESIZE"
+	config.window_decorations = "NONE"
 	config.window_background_opacity = 0.90
 	-- config.win32_system_backdrop = "Acrylic"
 	config.window_padding = { left = 6, right = 6, top = 6, bottom = 6 }
@@ -28,4 +28,3 @@ function M.apply_to_config(config)
 end
 
 return M
-
