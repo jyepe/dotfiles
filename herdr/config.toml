@@ -5,10 +5,10 @@ name = "vesper"
 auto_switch = false
 
 [theme.custom]
-sidebar_bg = "reset"
-active_row_bg = "#34294f"
-selection_bg = "#463568"
-panel_bg = "reset"
+# sidebar_bg = "reset"
+# active_row_bg = "#34294f"
+# selection_bg = "#463568"
+# panel_bg = "reset"
 accent = "#ff7edb"
 blue = "#36f9f6"
 green = "#72f1b8"
@@ -26,4 +26,4 @@ type = "shell"
 command = "herdr plugin action invoke open-board --plugin local.windows-board"
 
 [ui]
-status_indicators = "dots"
+status_indicators = "symbols"
