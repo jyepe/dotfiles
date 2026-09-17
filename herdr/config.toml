@@ -24,3 +24,4 @@ shell_mode = "non_login"
 key = "prefix+shift+b"
 type = "shell"
 command = "herdr plugin action invoke open-board --plugin local.windows-board"
+
