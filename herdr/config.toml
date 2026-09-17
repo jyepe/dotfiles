@@ -19,3 +19,6 @@ text = "#f0eff1"
 [terminal]
 default_shell = "pwsh"
 shell_mode = "non_login"
+
+[ui]
+status_indicators = "dots"
