@@ -28,4 +28,5 @@ keys.apply_to_config(config, workspaces)
 workspaces.setup()
 tab_bar.setup()
 
+-- Force WezTerm reload after theme update
 return config
