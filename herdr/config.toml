@@ -26,4 +26,6 @@ type = "shell"
 command = "herdr plugin action invoke open-board --plugin local.windows-board"
 
 [ui]
-status_indicators = "symbols"
+status_indicators = "dots"
+pane_outer_borders = false
+pane_gaps = false
