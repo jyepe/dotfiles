@@ -7,3 +7,8 @@ auto_switch = false
 [terminal]
 default_shell = "pwsh"
 shell_mode = "non_login"
+
+[[keys.command]]
+key = "prefix+shift+b"
+type = "shell"
+command = "herdr plugin action invoke open-board --plugin local.windows-board"
