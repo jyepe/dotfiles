@@ -25,5 +25,10 @@ key = "prefix+shift+b"
 type = "shell"
 command = "herdr plugin action invoke open-board --plugin local.windows-board"
 
+[[keys.command]]
+key = "prefix+shift+e"
+type = "shell"
+command = "powershell -ExecutionPolicy Bypass -File \"C:\\Users\\jyepe\\Documents\\herdr-start-ils-stack.ps1\""
+
 [ui]
 status_indicators = "dots"
