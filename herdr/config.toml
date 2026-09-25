@@ -32,3 +32,5 @@ command = "powershell -ExecutionPolicy Bypass -File \"C:\\Users\\jyepe\\Document
 
 [ui]
 status_indicators = "dots"
+mouse_capture = true
+right_click_passthrough_modifier = "alt"
