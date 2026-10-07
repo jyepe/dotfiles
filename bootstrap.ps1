@@ -52,6 +52,16 @@ $links = @(
         Source = Join-Path $repoRoot 'herdr\config.toml'
         Target = Join-Path $env:APPDATA 'herdr\config.toml'
         Kind   = 'File'
+    },
+    @{
+        Source = Join-Path $repoRoot 'superfile\config.toml'
+        Target = Join-Path $env:LOCALAPPDATA 'superfile\config.toml'
+        Kind   = 'File'
+    },
+    @{
+        Source = Join-Path $repoRoot 'superfile\hotkeys.toml'
+        Target = Join-Path $env:LOCALAPPDATA 'superfile\hotkeys.toml'
+        Kind   = 'File'
     }
 )
 
@@ -75,6 +85,7 @@ $dependencies = @(
     @{ Name = 'lazygit';     Check = { Get-Command lazygit -ErrorAction SilentlyContinue };       Choco = 'lazygit';              Winget = 'JesseDuffield.lazygit';                Url = 'https://github.com/jesseduffield/lazygit/releases' }
     @{ Name = 'file';        Check = { Get-Command file -ErrorAction SilentlyContinue };          Choco = 'file';                 Winget = $null;                                  Url = 'https://community.chocolatey.org/packages/file' }
     @{ Name = 'yazi';        Check = { Get-Command yazi -ErrorAction SilentlyContinue };           Choco = $null;                  Winget = 'sxyazi.yazi';                          Url = 'https://yazi-rs.github.io/docs/installation' }
+    @{ Name = 'superfile';   Check = { Get-Command superfile -ErrorAction SilentlyContinue };     Choco = $null;                  Winget = 'yorukot.superfile';                    Url = 'https://superfile.dev' }
     @{ Name = 'glazewm';     Check = { Get-Command glazewm -ErrorAction SilentlyContinue };       Choco = 'glazewm';              Winget = 'glzr-io.glazewm';                      Url = 'https://github.com/glzr-io/glazewm/releases' }
     @{ Name = 'C compiler (WinLibs)'; Check = { (Get-Command cc -ErrorAction SilentlyContinue) -or (Get-Command gcc -ErrorAction SilentlyContinue) }; Choco = $null; Winget = 'BrechtSanders.WinLibs.POSIX.UCRT'; Url = 'https://winlibs.com' }
     @{ Name = 'neru';        Check = { (Get-Command neru -ErrorAction SilentlyContinue) -or (Test-Path "$env:LOCALAPPDATA\Programs\neru\neru.exe") }; Script = { irm https://raw.githubusercontent.com/y3owk1n/neru/main/scripts/install.ps1 | iex }; Choco = $null; Winget = $null; Url = 'https://github.com/y3owk1n/neru' }

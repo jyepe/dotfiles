@@ -16,6 +16,7 @@ dotfiles/
   starship/starship.toml   # Starship prompt config
   neru/config.toml         # Neru key navigation & hotkey config
   herdr/config.toml        # Herdr terminal multiplexer config
+  superfile/               # Superfile TUI file manager config + hotkeys
   bootstrap.ps1             # symlinks everything into place
 ```
 
@@ -75,6 +76,7 @@ This symlinks:
 - `~/dotfiles/powershell/Microsoft.PowerShell_profile.ps1` → `$PROFILE`
 - `~/dotfiles/neru/config.toml`    → `%APPDATA%\neru\config.toml`
 - `~/dotfiles/herdr/config.toml`   → `%APPDATA%\herdr\config.toml`
+- `~/dotfiles/superfile/{config,hotkeys}.toml` → `%LOCALAPPDATA%\superfile\`
 
 Existing files at those targets are backed up to `*.bak` before linking.
 
