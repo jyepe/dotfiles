@@ -48,6 +48,7 @@ text = "#E8EEFF"
 "Primary+Shift+G" = "grid"
 "Primary+Shift+C" = "recursive_grid"
 "Primary+Shift+S" = ["action move_mouse --center", "scroll"]
+"Primary+Shift+M" = "action move_monitor"
 
 # Macros — named action sequences, reused from any binding.
 # Written by hand, not recorded. $1, $2 ... are the call's arguments.
