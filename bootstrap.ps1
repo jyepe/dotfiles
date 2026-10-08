@@ -85,7 +85,7 @@ $dependencies = @(
     @{ Name = 'lazygit';     Check = { Get-Command lazygit -ErrorAction SilentlyContinue };       Choco = 'lazygit';              Winget = 'JesseDuffield.lazygit';                Url = 'https://github.com/jesseduffield/lazygit/releases' }
     @{ Name = 'file';        Check = { Get-Command file -ErrorAction SilentlyContinue };          Choco = 'file';                 Winget = $null;                                  Url = 'https://community.chocolatey.org/packages/file' }
     @{ Name = 'yazi';        Check = { Get-Command yazi -ErrorAction SilentlyContinue };           Choco = $null;                  Winget = 'sxyazi.yazi';                          Url = 'https://yazi-rs.github.io/docs/installation' }
-    @{ Name = 'superfile';   Check = { Get-Command superfile -ErrorAction SilentlyContinue };     Choco = $null;                  Winget = 'yorukot.superfile';                    Url = 'https://superfile.dev' }
+    @{ Name = 'superfile';   Check = { (Get-Command spf -ErrorAction SilentlyContinue) -or (Get-Command superfile -ErrorAction SilentlyContinue) };     Choco = $null;                  Winget = 'yorukot.superfile';                    Url = 'https://superfile.dev' }
     @{ Name = 'glazewm';     Check = { Get-Command glazewm -ErrorAction SilentlyContinue };       Choco = 'glazewm';              Winget = 'glzr-io.glazewm';                      Url = 'https://github.com/glzr-io/glazewm/releases' }
     @{ Name = 'C compiler (WinLibs)'; Check = { (Get-Command cc -ErrorAction SilentlyContinue) -or (Get-Command gcc -ErrorAction SilentlyContinue) }; Choco = $null; Winget = 'BrechtSanders.WinLibs.POSIX.UCRT'; Url = 'https://winlibs.com' }
     @{ Name = 'neru';        Check = { (Get-Command neru -ErrorAction SilentlyContinue) -or (Test-Path "$env:LOCALAPPDATA\Programs\neru\neru.exe") }; Script = { irm https://raw.githubusercontent.com/y3owk1n/neru/main/scripts/install.ps1 | iex }; Choco = $null; Winget = $null; Url = 'https://github.com/y3owk1n/neru' }
@@ -104,7 +104,7 @@ function Install-Dependencies {
     $isAdmin   = Test-Admin
 
     if (($hasChoco -or $hasWinget) -and -not $isAdmin) {
-        Write-Warning "Not running elevated — choco/winget installs may fail. Re-run as Administrator if installs below fail."
+        Write-Warning "Not running elevated - choco/winget installs may fail. Re-run as Administrator if installs below fail."
     }
 
     foreach ($dep in $dependencies) {
@@ -161,7 +161,7 @@ foreach ($mod in $psModules) {
     if (Get-Module -ListAvailable -Name $mod) {
         Write-Host "[ok]      PS module '$mod' already installed" -ForegroundColor Green
     } else {
-        Write-Host "[missing] PS module '$mod' — installing via Install-Module ..." -ForegroundColor Yellow
+        Write-Host "[missing] PS module '$mod' - installing via Install-Module ..." -ForegroundColor Yellow
         try {
             Install-Module -Name $mod -Repository PSGallery -Scope CurrentUser -Force -ErrorAction Stop
             Write-Host "[ok]      PS module '$mod' installed" -ForegroundColor Green
@@ -206,7 +206,7 @@ foreach ($link in $links) {
     if (Test-Path $target) {
         $isLink = (Get-Item $target -Force).LinkType -ne $null
         if ($isLink) {
-            Write-Host "Symlink already exists at $target — recreating"
+            Write-Host "Symlink already exists at $target - recreating"
             Remove-Item $target -Force -Recurse
         } else {
             if (-not (Backup-Existing $target)) { continue }
